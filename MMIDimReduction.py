@@ -12,6 +12,11 @@ class MMINet:
         a stochastic estimate of the mutual information of projected features and class labels. 
         The method uses the Stochastic Mutual Information Gradient (SMIG) based on non-parametric 
         entropy estimates to update the projection network weights.
+        
+        Please refer to the following paper for further information:
+        Ozan Ozdenizci, Deniz Erdogmus. "Information Theoretic Feature Transformation Learning 
+        for Brain Interfaces". IEEE Transactions on Biomedical Engineering, 2019.
+        
         METHODS:
             learn - obtains the feature transformation network via the information theoretic loss
             reduce - reduces dimensionality of features using the learned network
@@ -43,11 +48,11 @@ class MMINet:
             for ind in trial_indices:
                 self.f.cleargrads()
                 proj_array = self.f(Variable(input_array))
-                loss = self._stochasticMI(proj_array, input_labels, ind)
+                loss = self._instantaneousLoss(proj_array, input_labels, ind)
                 loss.backward()
                 self.optimizer.update()
 
-    def _stochasticMI(self, proj_array, input_labels, ind):
+    def _instantaneousLoss(self, proj_array, input_labels, ind):
         """ Instantaneous MI estimate between projected features and labels based on non-parametric density estimates
             INPUT:
                 proj_array - Variable of projected features array [num_trials x output_dim]
