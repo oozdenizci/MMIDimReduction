@@ -1,6 +1,6 @@
 # Information Theoretic Dimensionality Reduction
 
-This is the MMINet dimensionality reduction network implementation, which uses a stochastic mutual information gradient based loss. The aim is to project high-dimensional continuous valued input feature space vectors onto a lower dimensional feature space non-parametrically based on a maximum mutual information (MMI) criterion between the transformed features and their associated discrete class labels. Implementation is in Python using the Chainer deep learning framework. `MMIDimReduction.py` includes the `MMINet` class definition, and `demo.py` demonstrates an example usage. 
+This is the MMINet dimensionality reduction network implementation, which uses a stochastic mutual information gradient based loss. The aim is to project high-dimensional continuous valued feature vectors onto a lower dimensional feature space non-parametrically based on a maximum mutual information (MMI) criterion between the transformed features and their associated discrete class labels. Implementation is in Python using the Chainer deep learning framework. `MMIDimReduction.py` includes the `MMINet` class definition, and `demo.py` demonstrates an example usage. 
 
 # Usage
 
@@ -15,7 +15,7 @@ model2 = MMINet(input_dim = ..., output_dim = ..., net = 'nonlinear')
 
 ```
 
-Following model construction, one can learn the linear or non-linear feature transformation based on MMI criterion using training samples, and then reduce dimensionality of input instances.
+Following model construction, one can learn a linear or non-linear feature transformation based on MMI criterion using training data samples, and then reduce dimensionality of input instances.
 
 ```python
 
@@ -25,7 +25,7 @@ z_test = model.reduce(x_test)
 
 ```
 
-Parameter `net = 'linear'` defines the network as a single dense layer architecture with no bias term, whereas `net = 'nonlinear'` defines a multilayer perceptron architecture consisting of two hidden layers with ELU activation functions. The model uses a MomentumSGD optimizer and a maximum number of epochs based stopping criterion by default. These default network implementations are meant to be manipulated later by any arbitrary choice. 
+Note that different initializations or number of training epochs will yield to different projection results. Parameter `net = 'linear'` defines the network as a single dense layer architecture with no bias term, whereas `net = 'nonlinear'` defines a multilayer perceptron architecture consisting of two hidden layers with ELU activation functions. The model uses a MomentumSGD optimizer and a maximum number of epochs based stopping criterion by default. These default network implementations are meant to be manipulated later by any arbitrary choice. 
 
 # Paper Citation
 If you use this code in your research and find it helpful, please cite the following paper:
