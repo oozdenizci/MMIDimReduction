@@ -4,13 +4,14 @@ from MMIDimReduction import MMINet
 import matplotlib.pyplot as plt
 
 
-# An illustrative example - Two Class: 2D to 1D
+# An illustrative example with two-dimensional data from two classes
 x_c1 = np.random.multivariate_normal([-6, 5], [[25, 45], [45, 90]], 200)
 x_c2 = np.random.multivariate_normal([5, -7], [[25, 45], [45, 90]], 200)
 x_train = np.concatenate((x_c1, x_c2), axis=0)
 y_train = np.concatenate((np.zeros(shape=(200, 1), dtype='int64'),
                           np.ones(shape=(200, 1), dtype='int64')))
 
+# Project two-dimensional input features into a single dimension
 model = MMINet(input_dim=2, output_dim=1, net='linear')
 model.learn(x_train, y_train, num_epochs=10)
 z_train = model.reduce(x_train)
