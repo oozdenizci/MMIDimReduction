@@ -15,7 +15,7 @@ model2 = MMINet(input_dim = ..., output_dim = ..., net = 'nonlinear')
 
 ```
 
-Following model construction, one can learn a linear or non-linear feature transformation based on MMI criterion using training data samples, and then reduce dimensionality of input instances.
+Following model construction, one can `learn` a linear or non-linear feature transformation based on MMI criterion using training data samples, and then `reduce` dimensionality of input instances.
 
 ```python
 
